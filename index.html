@@ -1,43 +1,134 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>埼玉の不動産無料査定｜K-Partner</title>
-<meta name="description" content="埼玉・東京・千葉・神奈川の土地、戸建て、マンションの不動産査定サービス。">
+<title>査定くん｜不動産無料査定</title>
+<meta name="description" content="土地・戸建て・マンションの無料不動産査定。">
 <style>
-body{margin:0;font-family:sans-serif;background:#f4f7fa;color:#123}
-header{background:#123b60;color:white;padding:20px;font-size:24px}
-main{max-width:600px;margin:auto;padding:24px}
-section{background:white;padding:24px;border-radius:12px}
-input,select,button{width:100%;padding:14px;margin:10px 0;box-sizing:border-box;font-size:16px}
-button{background:#087d59;color:white;border:0;border-radius:8px}
+*{box-sizing:border-box}
+body{margin:0;background:#f5f8f6;color:#203c39;font-family:sans-serif}
+header{background:white;padding:18px;text-align:center;font-size:28px;font-weight:bold;color:#176b59}
+main{max-width:600px;margin:auto;padding:20px}
+.hero{text-align:center;padding:10px 0 25px}
+h1{font-size:27px;line-height:1.5;margin:12px 0}
+h2{font-size:21px}
+.tag{display:inline-block;background:#e0f0e8;padding:8px 20px;border-radius:30px;font-weight:bold}
+section{background:white;padding:22px;border-radius:20px;box-shadow:0 4px 20px #00000009}
+label{display:block;font-weight:bold;margin-top:18px}
+input,select,button{width:100%;padding:15px;margin:8px 0;font-size:16px;border:1px solid #ccd8d3;border-radius:10px}
+button{background:#087d59;color:white;border:0;font-size:20px;font-weight:bold;padding:19px;cursor:pointer}
+.note{font-size:12px;color:#64746e;text-align:center}
+.features{display:flex;justify-content:center;gap:10px;font-size:13px;margin:20px 0}
+.features span{background:white;border-radius:10px;padding:12px}
+footer{text-align:center;padding:25px;font-size:12px;color:#64746e}
+#result{display:none;margin-top:20px}
 </style>
 </head>
 <body>
-<header>K-Partner</header>
+
+<header>🐾 査定くん</header>
+
 <main>
-<h1>あなたの不動産、今いくら？</h1>
-<p>一都三県対応・無料不動産査定</p>
+<div class="hero">
+
+<svg width="180" height="170" viewBox="0 0 180 170">
+<ellipse cx="90" cy="143" rx="57" ry="8" fill="#dce8df"/>
+<ellipse cx="90" cy="111" rx="40" ry="33" fill="#b97b46"/>
+<ellipse cx="65" cy="139" rx="18" ry="12" fill="#dca66c"/>
+<ellipse cx="115" cy="139" rx="18" ry="12" fill="#dca66c"/>
+<ellipse cx="45" cy="64" rx="23" ry="38" fill="#986033" transform="rotate(18 45 64)"/>
+<ellipse cx="135" cy="64" rx="23" ry="38" fill="#986033" transform="rotate(-18 135 64)"/>
+<ellipse cx="90" cy="65" rx="48" ry="45" fill="#dca66c"/>
+<ellipse cx="90" cy="83" rx="30" ry="23" fill="#f2d4a7"/>
+<circle cx="70" cy="59" r="7" fill="#33251b"/>
+<circle cx="110" cy="59" r="7" fill="#33251b"/>
+<circle cx="72" cy="57" r="2" fill="white"/>
+<circle cx="112" cy="57" r="2" fill="white"/>
+<ellipse cx="90" cy="76" rx="10" ry="7" fill="#33251b"/>
+<path d="M78 87 Q90 104 102 87" fill="#513226"/>
+<ellipse cx="90" cy="94" rx="6" ry="7" fill="#ef9797"/>
+<path d="M65 104 L115 104 L90 132 Z" fill="#087d59"/>
+<text x="90" y="119" fill="white" font-size="15" text-anchor="middle">査</text>
+</svg>
+
+<div><span class="tag">全国対応・無料査定</span></div>
+
+<h1>あなたの不動産、<br>今いくら？</h1>
+
+<p>大切な資産の価値を知ることから。<br>売却を決めていなくても大丈夫です。</p>
+
+<div class="features">
+<span>✓ 相談無料</span>
+<span>✓ 簡単入力</span>
+<span>✓ 全国対応</span>
+</div>
+</div>
+
 <section>
-<h2>不動産簡易査定</h2>
-<select>
-<option>埼玉県</option>
-<option>東京都</option>
-<option>千葉県</option>
-<option>神奈川県</option>
-</select>
-<input placeholder="市区町村・住所">
-<select>
+<h2>無料査定をはじめる</h2>
+
+<form id="assessment">
+
+<label>物件の種類</label>
+<select id="type" required>
+<option value="">選択してください</option>
 <option>土地</option>
-<option>戸建て</option>
+<option>一戸建て</option>
 <option>マンション</option>
+<option>その他</option>
 </select>
-<input type="number" placeholder="面積（㎡）">
-<button onclick="alert('自動査定機能は準備中です')">無料で査定する</button>
+
+<label>物件の所在地</label>
+<input id="address" placeholder="例：埼玉県さいたま市浦和区" required>
+
+<label>面積（㎡）</label>
+<input id="area" type="number" min="1" placeholder="例：100" required>
+
+<label>査定の目的</label>
+<select id="purpose" required>
+<option value="">選択してください</option>
+<option>今の価値を知りたい</option>
+<option>売却を検討している</option>
+<option>相続・資産整理</option>
+<option>その他</option>
+</select>
+
+<button type="submit">無料査定へ進む →</button>
+<p class="note">入力内容はまだ外部に送信されません。</p>
+
+</form>
+
+<div id="result">
+<h2>物件情報の確認</h2>
+<p id="summary"></p>
+<p>現在、査定受付機能を準備しています。</p>
+<p>査定価格の算出・お問い合わせの送信はまだできません。</p>
+<button onclick="location.reload()">入力画面に戻る</button>
+</div>
+
 </section>
-<p>不動産の価値を、もっと身近に。</p>
-<p>© K-Partner</p>
+
+<footer>
+<strong>査定くん</strong><br><br>
+運営：K-Partner<br><br>
+© 2026 K-Partner
+</footer>
 </main>
+
+<script>
+document.getElementById("assessment").addEventListener("submit",function(e){
+e.preventDefault();
+const type=document.getElementById("type").value;
+const address=document.getElementById("address").value;
+const area=document.getElementById("area").value;
+const purpose=document.getElementById("purpose").value;
+document.getElementById("summary").textContent=type+" ／ "+address+" ／ "+area+"㎡ ／ "+purpose;
+this.style.display="none";
+document.getElementById("result").style.display="block";
+});
+</script>
+
 </body>
 </html>

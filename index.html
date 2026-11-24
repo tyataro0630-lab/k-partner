@@ -1,1 +1,256 @@
-<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="査定くん by K-Partner。全国47都道府県の土地・戸建て・マンションの無料参考価格シミュレーション。"><title>査定くん | K-Partner</title><style>:root{--g:#176b59;--p:#e9f5ee;--ink:#203c39}*{box-sizing:border-box}body{margin:0;background:#f6f8f6;color:var(--ink);font-family:system-ui,'Noto Sans JP',sans-serif;line-height:1.65}header{background:white;padding:16px;text-align:center;border-bottom:1px solid #ddd}header strong{font-size:25px;color:var(--g)}main{max-width:680px;margin:auto;padding:18px}.hero{text-align:center;padding:18px 0}.tag{display:inline-block;border-radius:30px;padding:5px 16px;background:var(--p);color:var(--g);font-weight:bold}.hero h1{font-size:28px;line-height:1.4}.card{background:white;padding:22px;margin:18px 0;border-radius:18px;box-shadow:0 2px 12px #153b2710}h2{font-size:21px;margin:0 0 15px}label{display:block;font-weight:700;margin:15px 0 5px}input,select,textarea{width:100%;border:1px solid #b7c9c0;border-radius:9px;padding:13px;font:inherit;background:white}button{width:100%;background:var(--g);color:white;border:0;border-radius:12px;padding:16px;font-size:17px;font-weight:700;margin-top:20px;cursor:pointer}button.secondary{background:#e9f5ee;color:var(--g)}.small{font-size:13px;color:#53645e}.price{font-size:34px;color:var(--g);font-weight:800;text-align:center}.hidden{display:none}.pill{display:inline-block;background:var(--p);padding:5px 10px;border-radius:15px;margin:4px;font-size:13px}footer{text-align:center;padding:30px 15px;color:#667}.warning{border-left:4px solid #b88634;padding:10px;background:#fff8e8}.check{display:flex;gap:10px;align-items:start}.check input{width:auto;margin-top:7px}@media(max-width:450px){.hero h1{font-size:24px}.card{padding:17px}} </style></head><body><header><strong>🐶 査定くん</strong><div class="small">by K-Partner</div></header><main><section class="hero"><span class="tag">全国47都道府県対応・無料・登録不要</span><h1>あなたの不動産、<br>いくらで売れる？</h1><p>土地・戸建て・マンションの参考価格をかんたん試算。特殊な土地のご相談にも対応を目指しています。</p></section><section class="card"><h2>🏡 参考価格を自動計算</h2><form id="form"><label for="pref">都道府県 *</label><select id="pref" required><option value="">選択してください</option></select><label for="city">市区町村・町名 *</label><input id="city" required placeholder="例：さいたま市浦和区常盤"><label for="type">物件種別 *</label><select id="type" required><option value="land">土地</option><option value="house">戸建て</option><option value="condo">マンション</option><option value="building">一棟物件</option><option value="other">その他・特殊物件</option></select><label for="area">面積（㎡） *</label><input id="area" type="number" min="1" max="1000000" step="0.01" required placeholder="例：70"><div class="small" id="tsubo"></div><label for="age">築年数（建物がある場合）</label><input id="age" type="number" min="0" max="200" step="1" placeholder="例：15"><label for="condition">特殊条件</label><select id="condition"><option value="normal">特になし・不明</option><option value="adjust">市街化調整区域</option><option value="rebuild">再建築不可</option><option value="lease">借地権</option><option value="other">その他の特殊条件</option></select><label for="notes">その他の情報（任意）</label><textarea id="notes" rows="3" placeholder="接道状況、用途地域、建物の状態など。氏名・電話番号・番地は入力しないでください。"></textarea><div class="check"><input type="checkbox" id="agree" required><label for="agree" style="margin:10px 0;font-weight:400">この結果は市場データに連動しない試算であり、正式な不動産査定ではないことを理解しました。</label></div><button type="submit">無料で参考価格を計算する</button></form></section><section class="card hidden" id="result" aria-live="polite"><h2>📋 参考価格シミュレーション結果</h2><div class="price" id="price"></div><p id="range" style="text-align:center"></p><p id="details"></p><div class="warning"><strong>重要：</strong>これは地域別の仮定単価を用いたデモ計算です。実際の成約事例、公示地価、路線価、接道、用途地域、権利関係などは反映していません。売出価格や売却判断には使用せず、専門家の個別査定を受けてください。</div><button class="secondary" id="copy" type="button">結果をコピーする</button></section><section class="card"><h2>🌿 査定くんの特徴</h2><span class="pill">全国対応</span><span class="pill">会員登録不要</span><span class="pill">特殊物件の相談も視野に</span><p>将来的には全国の不動産会社とつながる相談プラットフォームを目指します。現在、このページから不動産会社への相談送信・紹介はできません。</p></section><section class="card"><h2>🤝 不動産会社の皆さまへ</h2><p>査定くん by K-Partner は、全国の不動産会社との提携ネットワーク構築を構想しています。提携受付・相談紹介機能は準備中です。</p></section></main><footer>© 査定くん by K-Partner<br><span class="small">参考価格計算の試作版 / 個人情報の送信・保存は行いません</span></footer><script>const prefs='北海道 青森県 岩手県 宮城県 秋田県 山形県 福島県 茨城県 栃木県 群馬県 埼玉県 千葉県 東京都 神奈川県 新潟県 富山県 石川県 福井県 山梨県 長野県 岐阜県 静岡県 愛知県 三重県 滋賀県 京都府 大阪府 兵庫県 奈良県 和歌山県 鳥取県 島根県 岡山県 広島県 山口県 徳島県 香川県 愛媛県 高知県 福岡県 佐賀県 長崎県 熊本県 大分県 宮崎県 鹿児島県 沖縄県'.split(' ');const sel=document.getElementById('pref');prefs.forEach(p=>sel.add(new Option(p,p)));const $=id=>document.getElementById(id);$('area').addEventListener('input',()=>{$('tsubo').textContent=$('area').value?`約 ${(Number($('area').value)/3.305785).toFixed(2)} 坪`:''});const unit={'東京都':42,'神奈川県':27,'大阪府':25,'京都府':22,'愛知県':21,'埼玉県':20,'千葉県':19,'兵庫県':19,'福岡県':18,'北海道':13,'沖縄県':15};let copied='';const fmt=n=>Math.round(n).toLocaleString('ja-JP');$('form').addEventListener('submit',e=>{e.preventDefault();const p=$('pref').value,city=$('city').value.trim(),t=$('type').value,a=Number($('area').value),age=Number($('age').value||0),cond=$('condition').value;if(!p||!city||!Number.isFinite(a)||a<=0)return;const base=unit[p]??12;const multiplier={land:1,house:1.35,condo:1.55,building:1.65,other:0.8}[t];const ageFactor=t==='land'?1:Math.max(0.45,1-Math.min(age,100)*0.012);const special={normal:1,adjust:0.65,rebuild:0.55,lease:0.7,other:0.75}[cond];const amount=a*base*multiplier*ageFactor*special;const low=amount*.7,high=amount*1.3;const typeName={land:'土地',house:'戸建て',condo:'マンション',building:'一棟物件',other:'その他・特殊物件'}[t];$('price').textContent=`約 ${fmt(amount)} 万円`;$('range').textContent=`仮の参考幅：約 ${fmt(low)}万〜${fmt(high)}万円`;$('details').textContent=`${p} ${city} ／ ${typeName} ／ ${a}㎡${t==='land'?'':` ／ 築${age}年`} ／ ${$('condition').selectedOptions[0].textContent}`;copied=`査定くん by K-Partner（デモ計算）\n${$('details').textContent}\n参考価格：約${fmt(amount)}万円\n参考幅：約${fmt(low)}万〜${fmt(high)}万円\n※市場データ未連動の仮定単価による試算。正式な査定ではありません。`;const r=$('result');r.classList.remove('hidden');r.scrollIntoView({behavior:'smooth',block:'start'})});$('copy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(copied);$('copy').textContent='コピーしました'}catch(e){const ta=document.createElement('textarea');ta.value=copied;document.body.append(ta);ta.select();document.execCommand('copy');ta.remove();$('copy').textContent='コピーしました'}});</script></body></html>
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="査定くん by K-Partner。不動産の無料参考価格シミュレーション。">
+<title>査定くん | K-Partner</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f5f8f6;color:#203c39;font-family:system-ui,sans-serif;line-height:1.7}
+header{background:white;padding:18px;text-align:center;border-bottom:1px solid #ddd}
+.logo{font-size:28px;font-weight:bold;color:#176b59}
+main{max-width:680px;margin:auto;padding:16px}
+.hero{text-align:center;padding:25px 0}
+h1{font-size:28px;line-height:1.4}
+h2{font-size:21px}
+.tag{display:inline-block;background:#e0f3e9;color:#176b59;padding:6px 15px;border-radius:30px;font-weight:bold}
+.card{background:white;border-radius:18px;padding:22px;margin-bottom:20px;box-shadow:0 3px 15px #00000009}
+label{display:block;font-weight:bold;margin:16px 0 6px}
+input,select{width:100%;padding:13px;border:1px solid #b8c8c2;border-radius:9px;font-size:16px;background:white}
+button{width:100%;border:0;border-radius:12px;padding:16px;background:#176b59;color:white;font-size:17px;font-weight:bold;margin-top:20px;cursor:pointer}
+button.secondary{background:#e9f5ee;color:#176b59}
+button:disabled{opacity:.6;cursor:default}
+.features{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.features span{background:white;border-radius:20px;padding:6px 12px;font-size:13px}
+.price{font-size:30px;font-weight:bold;color:#176b59;text-align:center}
+.small{font-size:13px;color:#586b64}
+.warning{background:#fff8e8;padding:12px;border-radius:8px;font-size:13px}
+.hidden{display:none}
+footer{text-align:center;color:#667;padding:25px;font-size:13px}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">査定くん</div>
+<div class="small">by K-Partner</div>
+</header>
+
+<main>
+
+<section class="hero">
+<span class="tag">無料・個人情報不要</span>
+<h1>あなたの不動産、<br>いくらになる？</h1>
+<p>売却を考え始めたら、まずは価格の目安を確認してみませんか？</p>
+<div class="features">
+<span>✓ 全国対応</span>
+<span>✓ 登録不要</span>
+<span>✓ 営業電話なし</span>
+</div>
+</section>
+
+<section class="card">
+<h2>不動産の情報を入力</h2>
+
+<form id="assessment">
+
+<label for="type">物件種別</label>
+<select id="type" onchange="changeType()">
+<option value="land">土地</option>
+<option value="house">戸建て</option>
+<option value="mansion">マンション</option>
+</select>
+
+<label for="pref">都道府県</label>
+<select id="pref" required>
+<option value="">選択してください</option>
+</select>
+
+<label for="city">市区町村</label>
+<input id="city" placeholder="例：さいたま市浦和区" required>
+
+<label for="station">最寄り駅（任意）</label>
+<input id="station" placeholder="例：浦和駅">
+
+<label for="walk">駅徒歩分数</label>
+<select id="walk">
+<option value="1.10">5分以内</option>
+<option value="1.05">6〜10分</option>
+<option value="1.00" selected>11〜15分</option>
+<option value="0.90">16〜20分</option>
+<option value="0.80">21分以上</option>
+<option value="1.00">不明</option>
+</select>
+
+<div id="landBox">
+<label for="landArea">土地面積（㎡）</label>
+<input id="landArea" type="number" min="1" max="100000" placeholder="例：100" required>
+</div>
+
+<div id="buildingBox" class="hidden">
+<label id="buildingLabel" for="buildingArea">建物面積（㎡）</label>
+<input id="buildingArea" type="number" min="1" max="10000" placeholder="例：80">
+
+<label for="age">築年数</label>
+<input id="age" type="number" min="0" max="150" placeholder="例：15">
+</div>
+
+<label for="unit">想定土地単価（万円／㎡）</label>
+<input id="unit" type="number" min="0.01" max="10000" step="any" placeholder="例：20" required>
+
+<p class="small">
+現在はAPI連携前の試験版です。土地単価を入力して参考価格を計算します。
+マンションの場合は想定専有面積単価を入力してください。
+</p>
+
+<button type="submit">無料で参考価格を計算する</button>
+
+</form>
+</section>
+
+<section id="result" class="card hidden">
+
+<h2>参考価格シミュレーション結果</h2>
+
+<p id="property" class="small"></p>
+
+<div id="price" class="price"></div>
+
+<p style="text-align:center">入力条件に基づく参考価格帯</p>
+
+<div class="warning">
+この結果は入力された想定単価と仮の補正係数による試算です。実際の取引事例に基づく査定額ではありません。売却価格を保証するものではありません。
+</div>
+
+<button class="secondary" onclick="copyResult()">結果をコピーする</button>
+
+<p id="copyStatus" class="small"></p>
+
+<button class="secondary" onclick="document.getElementById('assessment').scrollIntoView({behavior:'smooth'})">条件を変更する</button>
+
+</section>
+
+<section class="card">
+<h2>もっと正確な価格を知りたい方へ</h2>
+
+<p>地域の不動産会社に相談することで、物件の状態や周辺の取引事例を踏まえた査定を受けられます。</p>
+
+<button disabled>不動産会社に無料相談する（準備中）</button>
+
+<p class="small">現在、査定相談サービスの公開に向けて準備を進めています。</p>
+</section>
+
+<section class="card">
+<h2>査定くんが目指すサービス</h2>
+<p>不動産を売るかどうか決めていなくても、気軽に価格を確認できるサービスを目指しています。</p>
+<p>個人情報を入力せず、自分のペースで売却を検討できます。</p>
+</section>
+
+</main>
+
+<footer>
+査定くん by K-Partner<br>
+© 2026 K-Partner
+</footer>
+
+<script>
+const prefs = [
+"北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県",
+"茨城県","栃木県","群馬県","埼玉県","千葉県","東京都","神奈川県",
+"新潟県","富山県","石川県","福井県","山梨県","長野県",
+"岐阜県","静岡県","愛知県","三重県",
+"滋賀県","京都府","大阪府","兵庫県","奈良県","和歌山県",
+"鳥取県","島根県","岡山県","広島県","山口県",
+"徳島県","香川県","愛媛県","高知県",
+"福岡県","佐賀県","長崎県","熊本県","大分県","宮崎県","鹿児島県","沖縄県"
+];
+
+const el = id => document.getElementById(id);
+
+prefs.forEach(p => {
+const option = document.createElement("option");
+option.value = p;
+option.textContent = p;
+el("pref").appendChild(option);
+});
+
+function changeType(){
+const type = el("type").value;
+el("landBox").classList.toggle("hidden",type==="mansion");
+el("buildingBox").classList.toggle("hidden",type==="land");
+el("landArea").required = type!=="mansion";
+el("buildingArea").required = type!=="land";
+el("age").required = type!=="land";
+el("buildingLabel").textContent = type==="mansion" ? "専有面積（㎡）" : "建物面積（㎡）";
+el("result").classList.add("hidden");
+}
+
+let resultText = "";
+
+el("assessment").addEventListener("submit",function(e){
+e.preventDefault();
+
+const type = el("type").value;
+const land = Number(el("landArea").value);
+const building = Number(el("buildingArea").value);
+const age = Number(el("age").value);
+const walk = Number(el("walk").value);
+const unit = Number(el("unit").value);
+
+let price = 0;
+
+if(type==="land"){
+price = land * unit * walk;
+}
+
+if(type==="house"){
+const buildingValue = building * 20 * Math.max(0,1-age/30);
+price = land * unit * walk + buildingValue;
+}
+
+if(type==="mansion"){
+price = building * unit * walk;
+}
+
+const low = Math.round(price*0.85);
+const high = Math.round(price*1.15);
+
+const names = {
+land:"土地",
+house:"戸建て",
+mansion:"マンション"
+};
+
+const location = el("pref").value + el("city").value;
+
+el("property").textContent = location + " ／ " + names[type];
+
+el("price").textContent = low.toLocaleString("ja-JP") + "〜" + high.toLocaleString("ja-JP") + "万円";
+
+resultText = "査定くん 参考価格シミュレーション\n" +
+location + "\n物件種別：" + names[type] +
+"\n最寄り駅：" + (el("station").value || "未入力") +
+"\n参考価格：" + el("price").textContent +
+"\n※入力単価と仮の係数による試算です。";
+
+el("copyStatus").textContent = "";
+el("result").classList.remove("hidden");
+el("result").scrollIntoView({behavior:"smooth"});
+});
+
+async function copyResult(){
+try{
+await navigator.clipboard.writeText(resultText);
+el("copyStatus").textContent = "コピーしました。";
+}catch(e){
+el("copyStatus").textContent = "コピーできませんでした。結果を長押ししてコピーしてください。";
+}
+}
+
+changeType();
+</script>
+
+</body>
+</html>
